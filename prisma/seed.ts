@@ -11,7 +11,7 @@ async function main() {
       name: 'Admin User',
       email: 'admin@vintage.com',
       password: adminPassword,
-      role: Role.ADMIN,
+      role: 'ADMIN',
     },
   })
 
