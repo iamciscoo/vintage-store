@@ -1,0 +1,155 @@
+# Cursor Rules
+
+## Instructions
+
+- Record fixes for mistakes or corrections to avoid repetition in the `Lessons` section.
+- Always prefer simple solutions over complex ones.
+- Avoid duplication of code whenever possible, which means checking for other areas of the codebase that might already have similar code and functionality.
+- You are careful to only make changes that requested or you are confident are well understood and related to the change being requested.
+- When fixing an issue or bug, do not introduce a new pattern or technology without first exhausting all options for the existing implementation.
+- Keep the codebase clean and easy to understand.
+- Avoid making major changes to the patterns and architecture of how a feature works, after it has shown to work well, unless explicitly instructed to do so.
+- Organize thoughts and plan steps before starting a task in the `Scratchpad` section.
+- Clear old tasks if necessary.
+- Use todo markers for progress tracking:
+  - `[X]` Completed tasks
+  - `[ ]` Pending tasks
+- Update Scratchpad after completing subtasks.
+- Reflect and plan after milestones for better task management.
+- Mocking data is only needed for tests, never for the dev or production environment.
+- Never add stubbing or fake data patterns to code that affects the dev or production environment.
+- Always refer to Scratchpad before planning the next step.
+- Never overwrite my .env file without first asking and confirming with me.
+
+## Lessons
+
+
+## Scratchpad
+
+
+### Phase 1: Project Setup and Configuration
+- [X] Initialize Next.js 15 project with TypeScript
+- [X] Set up project structure and folders
+- [X] Configure ESLint and Prettier
+- [X] Install dependencies:
+  - [X] UI: @shadcn/ui, lucide-react, tailwindcss
+  - [X] State: zustand
+  - [X] Forms: react-hook-form, zod
+  - [X] Auth: next-auth@beta
+  - [X] Database: @prisma/client
+  - [X] File Upload: uploadthing
+  - [X] Email: resend
+  - [X] Charts: recharts
+  - [X] Utils: date-fns, slugify
+
+### Phase 2: Database and Authentication
+- [X] Set up PostgreSQL database
+- [ ] Configure Prisma schema:
+  - [ ] User model (id, name, email, password, role, etc.)
+  - [ ] Product model (id, name, price, description, images, etc.)
+  - [ ] Category model (id, name, slug)
+  - [ ] Order model (id, userId, status, items, total, etc.)
+  - [ ] OrderItem model (id, orderId, productId, quantity, price)
+  - [ ] Review model (id, userId, productId, rating, comment)
+- [ ] Generate and apply Prisma migrations
+- [ ] Set up NextAuth.js:
+  - [ ] Configure providers (credentials, Google, GitHub)
+  - [ ] Implement JWT handling
+  - [ ] Create protected API routes
+  - [ ] Set up role-based authorization
+
+### Phase 3: Core Components and Layout
+- [ ] Implement base layouts:
+  - [ ] Root layout with metadata
+  - [ ] Storefront layout
+  - [ ] Admin dashboard layout
+- [ ] Create reusable components:
+  - [ ] Navigation components (Navbar, Footer)
+  - [ ] Product components (Card, Grid, Details)
+  - [ ] Cart components (CartItem, CartSummary)
+  - [ ] Form components (Input, Select, Button)
+  - [ ] Loading and error states
+
+### Phase 4: Storefront Implementation
+- [ ] Build homepage:
+  - [ ] Hero section with featured products
+  - [ ] Category navigation
+  - [ ] Product highlights
+- [ ] Implement product listing:
+  - [ ] Grid view with pagination
+  - [ ] Filtering and sorting
+  - [ ] Search functionality
+- [ ] Create product details page:
+  - [ ] Image gallery
+  - [ ] Product information
+  - [ ] Add to cart functionality
+- [ ] Develop cart system:
+  - [ ] Cart state management with Zustand
+  - [ ] Add/remove items
+  - [ ] Update quantities
+  - [ ] Calculate totals
+
+### Phase 5: Checkout and Payments
+- [ ] Design checkout flow:
+  - [ ] Shipping information form
+  - [ ] Payment method selection
+  - [ ] Order summary
+- [ ] Implement payment methods:
+  - [ ] Mobile Money integration
+    - [ ] Phone number and transaction ID collection
+    - [ ] Validation system
+  - [ ] Bank Transfer system
+    - [ ] File upload for payment proof
+    - [ ] Admin verification flow
+  - [ ] Cash on Delivery setup
+- [ ] Order confirmation:
+  - [ ] Success page
+  - [ ] Email notifications via Resend
+  - [ ] Order tracking system
+
+### Phase 6: Admin Dashboard
+- [ ] Create dashboard overview:
+  - [ ] Key metrics display
+  - [ ] Sales charts with Recharts
+  - [ ] Recent orders table
+- [ ] Product management:
+  - [ ] CRUD operations
+  - [ ] Image upload with Uploadthing
+  - [ ] Inventory management
+- [ ] Order management:
+  - [ ] Order listing and filtering
+  - [ ] Status updates
+  - [ ] Payment verification
+- [ ] User management:
+  - [ ] User listing
+  - [ ] Role management
+  - [ ] Account actions
+
+### Phase 7: Analytics and Optimization
+- [ ] Implement analytics:
+  - [ ] Sales tracking
+  - [ ] User growth metrics
+  - [ ] Product performance
+- [ ] Performance optimization:
+  - [ ] Image optimization
+  - [ ] Code splitting
+  - [ ] API route optimization
+- [ ] SEO implementation:
+  - [ ] Meta tags
+  - [ ] Sitemap
+  - [ ] Structured data
+
+### Phase 8: Testing and Deployment
+- [ ] Write tests:
+  - [ ] Unit tests for utilities
+  - [ ] Integration tests for API routes
+  - [ ] E2E tests for critical flows
+- [ ] Security measures:
+  - [ ] Input validation
+  - [ ] Rate limiting
+  - [ ] CSRF protection
+- [ ] Deployment setup:
+  - [ ] Environment variables
+  - [ ] Build optimization
+  - [ ] Deployment to Vercel
+  - [ ] Database deployment
