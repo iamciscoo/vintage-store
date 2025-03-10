@@ -57,8 +57,8 @@
   - [X] Create product categories
   - [X] Add sample products with images
 - [ ] Set up NextAuth.js:
-  - [ ] Configure providers (credentials, Google, GitHub)
-  - [ ] Implement JWT handling
+  - [ ] Configure providers (credentials provider)
+  - [ ] Set up session handling
   - [ ] Create protected API routes
   - [ ] Set up role-based authorization
 
