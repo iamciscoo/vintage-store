@@ -44,14 +44,14 @@
 
 ### Phase 2: Database and Authentication
 - [X] Set up PostgreSQL database
-- [ ] Configure Prisma schema:
-  - [ ] User model (id, name, email, password, role, etc.)
-  - [ ] Product model (id, name, price, description, images, etc.)
-  - [ ] Category model (id, name, slug)
-  - [ ] Order model (id, userId, status, items, total, etc.)
-  - [ ] OrderItem model (id, orderId, productId, quantity, price)
-  - [ ] Review model (id, userId, productId, rating, comment)
-- [ ] Generate and apply Prisma migrations
+- [X] Configure Prisma schema:
+  - [X] User model (id, name, email, password, role, etc.)
+  - [X] Product model (id, name, price, description, images, etc.)
+  - [X] Category model (id, name, slug)
+  - [X] Order model (id, userId, status, items, total, etc.)
+  - [X] OrderItem model (id, orderId, productId, quantity, price)
+  - [X] Review model (id, userId, productId, rating, comment)
+- [X] Generate and apply Prisma migrations
 - [ ] Set up NextAuth.js:
   - [ ] Configure providers (credentials, Google, GitHub)
   - [ ] Implement JWT handling
