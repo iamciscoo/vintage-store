@@ -52,6 +52,10 @@
   - [X] OrderItem model (id, orderId, productId, quantity, price)
   - [X] Review model (id, userId, productId, rating, comment)
 - [X] Generate and apply Prisma migrations
+- [X] Seed initial data:
+  - [X] Create admin user
+  - [X] Create product categories
+  - [X] Add sample products with images
 - [ ] Set up NextAuth.js:
   - [ ] Configure providers (credentials, Google, GitHub)
   - [ ] Implement JWT handling
