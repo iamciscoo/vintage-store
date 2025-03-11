@@ -9,6 +9,7 @@ import { prisma } from "@/lib/prisma"
 const newPasswordSchema = z.object({
   token: z.string(),
   password: z.string().min(8, "Password must be at least 8 characters"),
+  email: z.string().email("Please provide a valid email"),
 })
 
 export async function POST(req: Request) {
@@ -16,12 +17,16 @@ export async function POST(req: Request) {
     const json = await req.json()
     const body = newPasswordSchema.parse(json)
 
-    const passwordReset = await prisma.passwordReset.findUnique({
-      where: { token: body.token },
-      include: { user: true },
+    // Changed approach to find the reset token using both token and email
+    // This provides more security and reliability
+    const user = await prisma.user.findUnique({
+      where: { email: body.email },
+      include: {
+        passwordReset: true,
+      },
     })
 
-    if (!passwordReset) {
+    if (!user || !user.passwordReset || user.passwordReset.token !== body.token) {
       return NextResponse.json(
         { message: "Invalid or expired reset link" },
         { status: 400 }
@@ -29,9 +34,10 @@ export async function POST(req: Request) {
     }
 
     const now = new Date()
-    if (now > passwordReset.expires) {
+    if (now > user.passwordReset.expires) {
+      // Delete expired token
       await prisma.passwordReset.delete({
-        where: { token: body.token },
+        where: { userId: user.id },
       })
       return NextResponse.json(
         { message: "Reset link has expired" },
@@ -41,13 +47,14 @@ export async function POST(req: Request) {
 
     const hashedPassword = await hash(body.password, 12)
 
+    // Update user password and remove the reset token
     await prisma.$transaction([
       prisma.user.update({
-        where: { id: passwordReset.userId },
+        where: { id: user.id },
         data: { password: hashedPassword },
       }),
       prisma.passwordReset.delete({
-        where: { token: body.token },
+        where: { userId: user.id },
       }),
     ])
 

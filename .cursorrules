@@ -27,6 +27,7 @@
 - When working with Next.js 15, page props typing issues may require disabling TypeScript and ESLint checks temporarily in next.config.js
 - Implement a fallback for external services like Resend to allow builds to complete without API keys
 - Always include both token and email in password reset links
+- When deploying Next.js with dependencies requiring Node.js APIs, specify runtime="nodejs" and configure serverComponentsExternalPackages
 
 ## Scratchpad
 
