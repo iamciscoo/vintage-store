@@ -95,7 +95,7 @@
   - [ ] Product components:
     - [X] ProductCard
     - [X] ProductGrid
-    - [ ] ProductGallery
+    - [X] ProductGallery
     - [ ] ProductDetails
     - [ ] ProductReviews
     - [ ] ProductRating
