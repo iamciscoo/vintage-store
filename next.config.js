@@ -16,12 +16,11 @@ const nextConfig = {
     // We'll handle TypeScript errors ourselves. This is temporary until Next.js 15 types are fixed.
     ignoreBuildErrors: true,
   },
-  // Adding experimental configuration to handle potential server component errors
   experimental: {
-    // Ensures server components are properly handled with the React 18 update
-    serverComponentsExternalPackages: ["bcryptjs", "@prisma/client"],
-    // Increasing stability by enabling the app directory features
-    serverActions: true,
+    // Enable Node.js middleware support
+    nodeMiddleware: true,
+    // Configure external packages that need Node.js runtime
+    serverExternalPackages: ["bcryptjs", "@prisma/client"],
   },
   // Adding runtime configuration for modules that need Node.js runtime
   webpack: (config) => {
