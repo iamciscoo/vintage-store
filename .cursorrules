@@ -22,12 +22,12 @@
 - Never overwrite my .env file without first asking and confirming with me.
 
 ## Lessons
-
+- Always set runtime to "nodejs" when using bcryptjs in Next.js to avoid Edge Runtime issues
+- Add postinstall and vercel-build scripts for proper Prisma setup on Vercel deployment
 
 ## Scratchpad
 
-
-### Phase 1: Project Setup and Configuration
+### Phase 1: Project Setup and Configuration ✓
 - [X] Initialize Next.js 15 project with TypeScript
 - [X] Set up project structure and folders
 - [X] Configure ESLint and Prettier
@@ -42,7 +42,7 @@
   - [X] Charts: recharts
   - [X] Utils: date-fns, slugify
 
-### Phase 2: Database and Authentication
+### Phase 2: Database and Authentication ✓
 - [X] Set up PostgreSQL database
 - [X] Configure Prisma schema:
   - [X] User model (id, name, email, password, role, etc.)
@@ -56,27 +56,93 @@
   - [X] Create admin user
   - [X] Create product categories
   - [X] Add sample products with images
-- [ ] Set up NextAuth.js:
-  - [ ] Configure providers (credentials provider)
-  - [ ] Set up session handling
-  - [ ] Create protected API routes
-  - [ ] Set up role-based authorization
+- [X] Set up NextAuth.js:
+  - [X] Configure providers (credentials provider)
+  - [X] Add OAuth providers (Google, GitHub)
+  - [X] Set up session handling
+  - [X] Create protected API routes
+  - [X] Set up role-based authorization
 
-### Phase 3: Core Components and Layout
-- [ ] Implement base layouts:
-  - [ ] Root layout with metadata
-  - [ ] Storefront layout
-  - [ ] Admin dashboard layout
-- [ ] Create reusable components:
-  - [ ] Navigation components (Navbar, Footer)
-  - [ ] Product components (Card, Grid, Details)
-  - [ ] Cart components (CartItem, CartSummary)
-  - [ ] Form components (Input, Select, Button)
-  - [ ] Loading and error states
+### Phase 3: Core Components and Layout 🔄
+- [X] Set up base app structure:
+  - [X] Create `(home)` folder in `app` directory
+  - [X] Create `(auth)` folder for authentication pages
+  - [X] Create `(dashboard)` folder for user dashboard
+  - [X] Create `(admin)` folder for admin routes
+
+- [X] Implement layouts:
+  - [X] Root layout with metadata and global styles
+  - [X] Home layout:
+    - [X] Header component with:
+      - [X] Logo and branding
+      - [X] Search bar with autocomplete
+      - [X] Navigation menu
+      - [X] Cart icon with item count
+      - [X] User menu (login/register/profile)
+    - [X] Footer component with:
+      - [X] Links and navigation
+      - [X] Social media icons
+      - [X] Newsletter signup
+      - [X] Copyright and policies
+
+- [ ] Create reusable UI components:
+  - [X] Navigation:
+    - [X] Navbar component
+    - [X] MobileNav component
+    - [X] Sidebar component
+    - [X] Breadcrumbs
+    - [X] Pagination
+  - [ ] Product components:
+    - [X] ProductCard
+    - [X] ProductGrid
+    - [ ] ProductGallery
+    - [ ] ProductDetails
+    - [ ] ProductReviews
+    - [ ] ProductRating
+  - [X] Cart components:
+    - [X] CartItem
+    - [X] CartSummary
+    - [X] CartDrawer/Modal
+  - [X] Form components:
+    - [X] Input fields
+    - [X] Select dropdowns
+    - [X] Checkboxes and radio buttons
+    - [X] Form validation
+    - [X] Error messages
+    - [X] Loading states
+  - [X] Common UI elements:
+    - [X] Buttons (primary, secondary, ghost)
+    - [X] Cards and containers
+    - [X] Modal/Dialog
+    - [X] Toast notifications
+    - [X] Loading spinners
+    - [X] Error boundaries
+
+- [ ] Implement shared functionality:
+  - [ ] Search functionality:
+    - [ ] Search input component
+    - [ ] Search results display
+    - [ ] Search filters
+  - [ ] Authentication UI:
+    - [ ] Sign in form
+    - [ ] Sign up form
+    - [ ] Password reset
+    - [ ] OAuth buttons
+  - [ ] Cart functionality:
+    - [ ] Cart state management
+    - [ ] Add/remove items
+    - [ ] Update quantities
+    - [ ] Cart persistence
+  - [ ] User preferences:
+    - [ ] Theme switching
+    - [ ] Language selection
+    - [ ] Currency selection
 
 ### Phase 4: Storefront Implementation
 - [ ] Build homepage:
   - [ ] Hero section with featured products
+  - [ ] Banner carousel
+  - [ ] Latest products
   - [ ] Category navigation
   - [ ] Product highlights
 - [ ] Implement product listing:
@@ -153,7 +219,7 @@
   - [ ] Rate limiting
   - [ ] CSRF protection
 - [ ] Deployment setup:
-  - [ ] Environment variables
-  - [ ] Build optimization
-  - [ ] Deployment to Vercel
-  - [ ] Database deployment
+  - [X] Environment variables
+  - [X] Build optimization
+  - [X] Deployment to Vercel
+  - [X] Database deployment
