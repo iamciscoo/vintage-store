@@ -1,10 +1,5 @@
-import { Suspense } from "react"
 import { prisma } from "@/lib/prisma"
-import { HeroSection } from "@/components/home/hero-section"
-import { BannerCarousel } from "@/components/home/banner-carousel"
-import { CategoryNavigation } from "@/components/home/category-navigation"
-import { LatestProducts } from "@/components/home/latest-products"
-import { ProductHighlights } from "@/components/home/product-highlights"
+import { ClientHomeWrapper } from "@/components/home/client-home-wrapper"
 
 export const dynamic = "force-dynamic"
 export const fetchCache = "force-no-store"
@@ -14,14 +9,14 @@ export default async function Home() {
   const featuredProducts = await prisma.product.findMany({
     where: {
       stock: {
-        gt: 0, // Only include products that are in stock
+        gt: 0,
       },
     },
     include: {
       category: true,
     },
     orderBy: {
-      price: "desc", // Feature higher-priced items
+      price: "desc",
     },
     take: 3,
   })
@@ -37,7 +32,7 @@ export default async function Home() {
       category: true,
     },
     orderBy: {
-      createdAt: "desc", // Most recent first
+      createdAt: "desc",
     },
     take: 8,
   })
@@ -69,35 +64,12 @@ export default async function Home() {
 
   return (
     <main>
-      <Suspense fallback={<div>Loading hero section...</div>}>
-        <section className="container py-6">
-          <HeroSection featuredProducts={featuredProducts} />
-        </section>
-      </Suspense>
-
-      <Suspense fallback={<div>Loading categories...</div>}>
-        <CategoryNavigation categories={categories} />
-      </Suspense>
-
-      <Suspense fallback={<div>Loading banners...</div>}>
-        <section className="py-12 bg-muted">
-          <div className="container">
-            <BannerCarousel banners={banners} />
-          </div>
-        </section>
-      </Suspense>
-
-      <Suspense fallback={<div>Loading latest products...</div>}>
-        <LatestProducts products={latestProducts} />
-      </Suspense>
-
-      <Suspense fallback={<div>Loading product highlights...</div>}>
-        <ProductHighlights
-          title="Staff Picks"
-          subtitle="Our team's favorite items this season"
-          products={featuredProducts}
-        />
-      </Suspense>
+      <ClientHomeWrapper
+        featuredProducts={featuredProducts}
+        latestProducts={latestProducts}
+        categories={categories}
+        banners={banners}
+      />
     </main>
   )
 }

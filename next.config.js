@@ -20,20 +20,23 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
-    nodeMiddleware: true,
   },
-  serverExternalPackages: ['bcryptjs', '@prisma/client'],
-  // Adding runtime configuration for modules that need Node.js runtime
-  webpack: (config) => {
-    config.resolve.fallback = {
-      ...config.resolve.fallback,
-      net: false,
-      dns: false,
-      tls: false,
-      fs: false,
-      path: false,
-    };
-    return config;
+  // Specify which packages should be treated as external on the server
+  serverComponentsExternalPackages: ['bcryptjs', '@prisma/client'],
+  // Configure webpack for Node.js compatibility
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Don't resolve 'fs' module on the client to prevent this error
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        dns: false,
+        path: false,
+      }
+    }
+    return config
   },
 }
 
