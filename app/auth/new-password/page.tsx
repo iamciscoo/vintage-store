@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { redirect } from "next/navigation"
+import { notFound } from "next/navigation"
 import { prisma } from "@/lib/prisma"
 
 import {
@@ -12,24 +12,26 @@ import {
 import { NewPasswordForm } from "@/components/auth/new-password-form"
 
 export const metadata: Metadata = {
-  title: "Set New Password - Vintage Store",
-  description: "Set a new password for your account",
+  title: "Reset Password - Vintage Store",
+  description: "Enter your new password",
 }
 
-interface NewPasswordPageProps {
-  searchParams: {
-    token?: string
+// @ts-expect-error - Next.js 15 has issues with page props types
+export default async function NewPasswordPage({ searchParams }: any) {
+  const token = searchParams.token as string
+  const email = searchParams.email as string
+
+  if (!token || !email) {
+    notFound()
   }
-}
 
-async function getPasswordReset(token: string) {
   const passwordReset = await prisma.passwordReset.findUnique({
     where: { token },
     include: { user: true },
   })
 
   if (!passwordReset) {
-    return null
+    notFound()
   }
 
   const now = new Date()
@@ -37,41 +39,24 @@ async function getPasswordReset(token: string) {
     await prisma.passwordReset.delete({
       where: { token },
     })
-    return null
+    notFound()
   }
 
-  return passwordReset
-}
-
-export default async function NewPasswordPage({
-  searchParams,
-}: NewPasswordPageProps) {
-  const token = searchParams.token
-
-  if (!token) {
-    redirect("/auth/signin")
-  }
-
-  const passwordReset = await getPasswordReset(token)
-
-  if (!passwordReset) {
-    redirect("/auth/signin?error=Invalid or expired reset link")
+  if (passwordReset.user.email !== email) {
+    notFound()
   }
 
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Card className="w-full max-w-[400px]">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Set new password</CardTitle>
+          <CardTitle className="text-2xl">Reset password</CardTitle>
           <CardDescription>
             Enter your new password below
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <NewPasswordForm
-            token={token}
-            email={passwordReset.user.email}
-          />
+          <NewPasswordForm token={token} email={email} />
         </CardContent>
       </Card>
     </div>

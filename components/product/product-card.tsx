@@ -3,6 +3,7 @@ import Link from "next/link"
 import { ShoppingCart } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+import { useCart } from "@/lib/store/cart"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -26,19 +27,30 @@ interface Product {
 interface ProductCardProps extends React.HTMLAttributes<HTMLDivElement> {
   product: Product
   variant?: "default" | "switchable"
-  isAddedToCart?: boolean
-  onAddToCart?: (productId: string) => void
 }
 
 export function ProductCard({
   product,
   variant = "default",
-  isAddedToCart = false,
-  onAddToCart,
   className,
   ...props
 }: ProductCardProps) {
   const { id, name, slug, price, images, category } = product
+  const cart = useCart()
+  const isInCart = cart.getItemQuantity(id) > 0
+
+  const handleCartAction = () => {
+    if (isInCart) {
+      cart.removeItem(id)
+    } else {
+      cart.addItem({
+        id,
+        name,
+        price,
+        image: images[0],
+      })
+    }
+  }
 
   return (
     <Card
@@ -78,13 +90,13 @@ export function ProductCard({
       </CardContent>
       <CardFooter className="p-4 pt-0">
         <Button
-          aria-label={isAddedToCart ? "Remove from cart" : "Add to cart"}
+          aria-label={isInCart ? "Remove from cart" : "Add to cart"}
           size="sm"
           className="w-full"
-          onClick={() => onAddToCart?.(id)}
+          onClick={handleCartAction}
         >
           <ShoppingCart className="mr-2 h-4 w-4" />
-          {isAddedToCart ? "Remove from cart" : "Add to cart"}
+          {isInCart ? "Remove from cart" : "Add to cart"}
         </Button>
       </CardFooter>
     </Card>

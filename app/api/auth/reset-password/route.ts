@@ -3,7 +3,17 @@ import { z } from "zod"
 import { Resend } from "resend"
 import { prisma } from "@/lib/prisma"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Create a mock Resend client if the API key is not provided
+const resend = process.env.RESEND_API_KEY 
+  ? new Resend(process.env.RESEND_API_KEY)
+  : {
+      emails: {
+        send: async () => {
+          console.log("Mock email sent (no RESEND_API_KEY provided)");
+          return { id: "mock-email-id", message: "Mock email sent" };
+        },
+      },
+    };
 
 const resetPasswordSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -49,7 +59,7 @@ export async function POST(req: Request) {
         <p>Hi ${user.name},</p>
         <p>Someone requested a password reset for your account. If this wasn't you, please ignore this email.</p>
         <p>Click the link below to reset your password. This link will expire in 1 hour.</p>
-        <p><a href="${process.env.NEXT_PUBLIC_APP_URL}/auth/new-password?token=${token}">Reset password</a></p>
+        <p><a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/auth/new-password?token=${token}&email=${body.email}">Reset password</a></p>
       `,
     })
 

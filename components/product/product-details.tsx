@@ -1,5 +1,6 @@
 import { ShoppingCart } from "lucide-react"
 
+import { useCart } from "@/lib/store/cart"
 import { ProductGallery } from "@/components/product/product-gallery"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -27,16 +28,27 @@ interface Product {
 
 interface ProductDetailsProps {
   product: Product
-  onAddToCart?: (productId: string) => void
-  isAddedToCart?: boolean
 }
 
 export function ProductDetails({
   product,
-  onAddToCart,
-  isAddedToCart = false,
 }: ProductDetailsProps) {
   const { id, name, description, price, images, stock, category } = product
+  const cart = useCart()
+  const isInCart = cart.getItemQuantity(id) > 0
+
+  const handleCartAction = () => {
+    if (isInCart) {
+      cart.removeItem(id)
+    } else {
+      cart.addItem({
+        id,
+        name,
+        price,
+        image: images[0],
+      })
+    }
+  }
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
@@ -111,10 +123,10 @@ export function ProductDetails({
             size="lg"
             className="w-full"
             disabled={stock === 0}
-            onClick={() => onAddToCart?.(id)}
+            onClick={handleCartAction}
           >
             <ShoppingCart className="mr-2 h-4 w-4" />
-            {isAddedToCart ? "Remove from cart" : "Add to cart"}
+            {isInCart ? "Remove from cart" : "Add to cart"}
           </Button>
         </div>
         <Separator />

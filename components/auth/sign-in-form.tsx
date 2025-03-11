@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { signIn } from "next-auth/react"
@@ -15,48 +17,52 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Alert, AlertDescription } from "@/components/ui/alert"
+import { toast } from "@/components/ui/use-toast"
 
-const signInSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
+const formSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
 })
-
-type SignInForm = z.infer<typeof signInSchema>
 
 export function SignInForm() {
   const router = useRouter()
-  const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
 
-  const form = useForm<SignInForm>({
-    resolver: zodResolver(signInSchema),
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   })
 
-  async function onSubmit(data: SignInForm) {
-    try {
-      setIsLoading(true)
-      setError(null)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true)
 
+    try {
       const result = await signIn("credentials", {
-        email: data.email,
-        password: data.password,
+        email: values.email,
+        password: values.password,
         redirect: false,
       })
 
-      if (result?.error) {
-        setError("Invalid email or password")
+      if (!result?.ok) {
+        toast({
+          title: "Error",
+          description: "Invalid email or password",
+          variant: "destructive",
+        })
         return
       }
 
-      router.push("/")
       router.refresh()
-    } catch (error) {
-      setError("Something went wrong. Please try again.")
+      router.push("/")
+    } catch {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      })
     } finally {
       setIsLoading(false)
     }
@@ -64,12 +70,7 @@ export function SignInForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-        {error && (
-          <Alert variant="destructive">
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="email"
@@ -80,6 +81,7 @@ export function SignInForm() {
                 <Input
                   type="email"
                   placeholder="Enter your email"
+                  disabled={isLoading}
                   {...field}
                 />
               </FormControl>
@@ -97,6 +99,7 @@ export function SignInForm() {
                 <Input
                   type="password"
                   placeholder="Enter your password"
+                  disabled={isLoading}
                   {...field}
                 />
               </FormControl>

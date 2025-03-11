@@ -1,6 +1,8 @@
+"use client"
+
 import { useCallback, useState } from "react"
 import { useRouter } from "next/navigation"
-import { Search as SearchIcon, X } from "lucide-react"
+import { Search as SearchIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"

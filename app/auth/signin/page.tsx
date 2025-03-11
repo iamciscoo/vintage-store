@@ -12,7 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { SignInForm } from "@/components/auth/sign-in-form"
-import { Separator } from "@/components/ui/separator"
 
 export const metadata: Metadata = {
   title: "Sign In - Vintage Store",

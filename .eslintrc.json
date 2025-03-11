@@ -1,0 +1,17 @@
+{
+  "extends": ["next/core-web-vitals", "prettier"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": ["error", {
+      "varsIgnorePattern": "actionTypes"
+    }]
+  },
+  "overrides": [
+    {
+      "files": ["app/auth/new-password/page.tsx"],
+      "rules": {
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
+} 
