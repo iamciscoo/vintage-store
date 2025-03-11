@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Search, ShoppingCart, User } from "lucide-react"
+import { Search, User } from "lucide-react"
 import { auth } from "@/auth"
 
 import { Button } from "@/components/ui/button"
