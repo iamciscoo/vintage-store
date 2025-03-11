@@ -132,41 +132,44 @@
     - [X] Password reset
     - [X] OAuth buttons
   - [ ] Cart functionality:
-    - [X] Cart state management
+    - [X] Cart state management with Zustand
     - [X] Add/remove items
     - [X] Update quantities
-    - [X] Cart persistence
+    - [X] Calculate totals
   - [ ] User preferences:
     - [X] Theme switching
     - [X] Language selection
     - [X] Currency selection
 
 ### Phase 4: Storefront Implementation
-- [ ] Build homepage:
-  - [ ] Hero section with featured products
-  - [ ] Banner carousel
-  - [ ] Latest products
-  - [ ] Category navigation
-  - [ ] Product highlights
-- [ ] Implement product listing:
-  - [ ] Grid view with pagination
-  - [ ] Filtering and sorting
-  - [ ] Search functionality
-- [ ] Create product details page:
-  - [ ] Image gallery
-  - [ ] Product information
-  - [ ] Add to cart functionality
-- [ ] Develop cart system:
-  - [ ] Cart state management with Zustand
-  - [ ] Add/remove items
-  - [ ] Update quantities
-  - [ ] Calculate totals
+- [X] Build homepage:
+  - [X] Hero section with featured products
+  - [X] Banner carousel
+  - [X] Latest products
+  - [X] Category navigation
+  - [X] Product highlights
+- [X] Implement product listing:
+  - [X] Grid view with pagination
+  - [X] Filtering and sorting
+  - [X] Search functionality
+- [X] Create product details page:
+  - [X] Image gallery
+  - [X] Product information
+  - [X] Add to cart functionality
+- [X] Develop cart system:
+  - [X] Cart state management with Zustand
+  - [X] Add/remove items
+  - [X] Update quantities
+  - [X] Calculate totals
+  - [X] Cart component (CartItem, CartSummary, CartSheet)
+  - [X] Fixed build issues with client components
 
 ### Phase 5: Checkout and Payments
 - [ ] Design checkout flow:
-  - [ ] Shipping information form
-  - [ ] Payment method selection
-  - [ ] Order summary
+  - [X] Basic checkout page structure
+  - [X] Shipping information form placeholder
+  - [X] Payment method selection placeholder
+  - [X] Order summary
 - [ ] Implement payment methods:
   - [ ] Mobile Money integration
     - [ ] Phone number and transaction ID collection
