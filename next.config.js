@@ -17,9 +17,12 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   experimental: {
-    serverActions: true,
-    serverComponentsExternalPackages: ['bcryptjs', '@prisma/client'],
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
+    nodeMiddleware: true,
   },
+  serverExternalPackages: ['bcryptjs', '@prisma/client'],
   // Adding runtime configuration for modules that need Node.js runtime
   webpack: (config) => {
     config.resolve.fallback = {

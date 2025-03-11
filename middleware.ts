@@ -1,9 +1,10 @@
 // Required for using next-auth in middleware
-export const runtime = "nodejs";
-
 import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 import { getToken } from 'next-auth/jwt'
+
+// Set runtime to nodejs
+export const runtime = "nodejs"
 
 export const config = {
   matcher: [
