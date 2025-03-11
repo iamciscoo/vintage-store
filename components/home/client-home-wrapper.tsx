@@ -2,10 +2,10 @@
 
 import { useEffect, useState } from "react"
 import HeroSection from "@/components/home/hero-section"
-import { BannerCarousel } from "@/components/home/banner-carousel"
-import { CategoryNavigation } from "@/components/home/category-navigation"
-import { LatestProducts } from "@/components/home/latest-products"
-import { ProductHighlights } from "@/components/home/product-highlights"
+import BannerCarousel from "@/components/home/banner-carousel"
+import CategoryNavigation from "@/components/home/category-navigation"
+import LatestProducts from "@/components/home/latest-products"
+import ProductHighlights from "@/components/home/product-highlights"
 import type { Product } from "@/types"
 
 interface Category {

@@ -10,7 +10,7 @@ interface LatestProductsProps {
   viewAllLink?: string
 }
 
-export function LatestProducts({
+export default function LatestProducts({
   products,
   title = "Latest Products",
   viewAllLink = "/products",

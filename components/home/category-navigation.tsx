@@ -14,7 +14,7 @@ interface CategoryNavigationProps {
   categories: Category[]
 }
 
-export function CategoryNavigation({ categories }: CategoryNavigationProps) {
+export default function CategoryNavigation({ categories }: CategoryNavigationProps) {
   return (
     <div className="py-10">
       <div className="container">

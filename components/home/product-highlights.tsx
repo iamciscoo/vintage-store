@@ -10,7 +10,7 @@ interface ProductHighlightsProps {
   limit?: number
 }
 
-export function ProductHighlights({
+export default function ProductHighlights({
   title = "Featured Products",
   subtitle = "Discover our handpicked selection of exceptional pieces",
   products,
