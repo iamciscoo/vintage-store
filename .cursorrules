@@ -97,8 +97,8 @@
     - [X] ProductGrid
     - [X] ProductGallery
     - [X] ProductDetails
-    - [ ] ProductReviews
-    - [ ] ProductRating
+    - [X] ProductReviews
+    - [X] ProductRating
   - [X] Cart components:
     - [X] CartItem
     - [X] CartSummary
