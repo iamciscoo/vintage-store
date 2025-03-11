@@ -11,7 +11,7 @@ interface HeroSectionProps {
   featuredProducts: Product[]
 }
 
-export function HeroSection({ featuredProducts }: HeroSectionProps) {
+export default function HeroSection({ featuredProducts }: HeroSectionProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const featuredProduct = featuredProducts[currentIndex]
 

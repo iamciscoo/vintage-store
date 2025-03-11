@@ -7,6 +7,12 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+    domains: [
+      "images.unsplash.com",
+      "plus.unsplash.com",
+      "uploadthing.com",
+      "utfs.io",
+    ],
   },
   eslint: {
     // We'll handle ESLint errors ourselves. This is temporary until Next.js 15 types are fixed.
@@ -20,7 +26,7 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
-    nodeMiddleware: true,
+    serverComponentsExternalPackages: ["@prisma/client", "bcryptjs"],
   },
   // Configure webpack for Node.js compatibility
   webpack: (config, { isServer }) => {
@@ -37,8 +43,6 @@ const nextConfig = {
     }
     return config
   },
-  // Specify which packages should be treated as external on the server
-  serverComponentsExternalPackages: ['bcryptjs', '@prisma/client'],
 }
 
 module.exports = nextConfig

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { HeroSection } from "@/components/home/hero-section"
+import HeroSection from "@/components/home/hero-section"
 import { BannerCarousel } from "@/components/home/banner-carousel"
 import { CategoryNavigation } from "@/components/home/category-navigation"
 import { LatestProducts } from "@/components/home/latest-products"
@@ -38,38 +38,43 @@ export function ClientHomeWrapper({
   categories,
   banners,
 }: ClientHomeWrapperProps) {
-  // Use state to handle hydration
-  const [isClient, setIsClient] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setIsClient(true)
+    setMounted(true)
   }, [])
 
-  if (!isClient) {
-    return null // Return nothing during SSR
+  if (!mounted) {
+    return null
   }
 
   return (
-    <main>
-      <section className="container py-6">
+    <main className="space-y-12">
+      <div className="container py-6">
         <HeroSection featuredProducts={featuredProducts} />
-      </section>
+      </div>
 
-      <CategoryNavigation categories={categories} />
+      <div>
+        <CategoryNavigation categories={categories} />
+      </div>
 
-      <section className="py-12 bg-muted">
+      <div className="bg-muted py-12">
         <div className="container">
           <BannerCarousel banners={banners} />
         </div>
-      </section>
+      </div>
 
-      <LatestProducts products={latestProducts} />
+      <div className="container">
+        <LatestProducts products={latestProducts} />
+      </div>
 
-      <ProductHighlights
-        title="Staff Picks"
-        subtitle="Our team's favorite items this season"
-        products={featuredProducts}
-      />
+      <div className="container pb-12">
+        <ProductHighlights
+          title="Staff Picks"
+          subtitle="Our team's favorite items this season"
+          products={featuredProducts}
+        />
+      </div>
     </main>
   )
 } 
