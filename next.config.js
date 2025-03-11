@@ -20,6 +20,7 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
+    nodeMiddleware: true,
   },
   serverExternalPackages: ['bcryptjs', '@prisma/client'],
   // Adding runtime configuration for modules that need Node.js runtime

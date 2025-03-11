@@ -1,9 +1,13 @@
+import { Suspense } from "react"
 import { prisma } from "@/lib/prisma"
 import { HeroSection } from "@/components/home/hero-section"
 import { BannerCarousel } from "@/components/home/banner-carousel"
 import { CategoryNavigation } from "@/components/home/category-navigation"
 import { LatestProducts } from "@/components/home/latest-products"
 import { ProductHighlights } from "@/components/home/product-highlights"
+
+export const dynamic = "force-dynamic"
+export const fetchCache = "force-no-store"
 
 export default async function Home() {
   // Fetch featured products
@@ -65,30 +69,35 @@ export default async function Home() {
 
   return (
     <main>
-      {/* Hero Section */}
-      <section className="container py-6">
-        <HeroSection featuredProducts={featuredProducts} />
-      </section>
+      <Suspense fallback={<div>Loading hero section...</div>}>
+        <section className="container py-6">
+          <HeroSection featuredProducts={featuredProducts} />
+        </section>
+      </Suspense>
 
-      {/* Category Navigation */}
-      <CategoryNavigation categories={categories} />
+      <Suspense fallback={<div>Loading categories...</div>}>
+        <CategoryNavigation categories={categories} />
+      </Suspense>
 
-      {/* Banner Carousel */}
-      <section className="py-12 bg-muted">
-        <div className="container">
-          <BannerCarousel banners={banners} />
-        </div>
-      </section>
+      <Suspense fallback={<div>Loading banners...</div>}>
+        <section className="py-12 bg-muted">
+          <div className="container">
+            <BannerCarousel banners={banners} />
+          </div>
+        </section>
+      </Suspense>
 
-      {/* Latest Products */}
-      <LatestProducts products={latestProducts} />
+      <Suspense fallback={<div>Loading latest products...</div>}>
+        <LatestProducts products={latestProducts} />
+      </Suspense>
 
-      {/* Product Highlights */}
-      <ProductHighlights
-        title="Staff Picks"
-        subtitle="Our team's favorite items this season"
-        products={featuredProducts}
-      />
+      <Suspense fallback={<div>Loading product highlights...</div>}>
+        <ProductHighlights
+          title="Staff Picks"
+          subtitle="Our team's favorite items this season"
+          products={featuredProducts}
+        />
+      </Suspense>
     </main>
   )
 }
