@@ -119,13 +119,13 @@
     - [X] Error boundaries
 
 - [ ] Implement shared functionality:
-  - [ ] Search functionality:
-    - [ ] Search input component
-    - [ ] Search results display
-    - [ ] Search filters
+  - [X] Search functionality:
+    - [X] Search input component
+    - [X] Search results display
+    - [X] Search filters
   - [ ] Authentication UI:
-    - [ ] Sign in form
-    - [ ] Sign up form
+    - [X] Sign in form
+    - [X] Sign up form
     - [ ] Password reset
     - [ ] OAuth buttons
   - [ ] Cart functionality:

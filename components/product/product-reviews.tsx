@@ -37,7 +37,6 @@ interface Review {
 }
 
 interface ProductReviewsProps extends React.HTMLAttributes<HTMLDivElement> {
-  productId: string
   reviews: Review[]
   userHasReviewed?: boolean
   onSubmitReview?: (data: { rating: number; comment: string }) => Promise<void>
@@ -54,7 +53,6 @@ const reviewSchema = z.object({
 type ReviewForm = z.infer<typeof reviewSchema>
 
 export function ProductReviews({
-  productId,
   reviews,
   userHasReviewed = false,
   onSubmitReview,
