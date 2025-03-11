@@ -1,3 +1,6 @@
+// Required for using bcryptjs in Next.js
+export const runtime = "nodejs";
+
 import { hash } from "bcryptjs"
 import { NextResponse } from "next/server"
 import { z } from "zod"

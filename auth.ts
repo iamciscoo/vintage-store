@@ -1,3 +1,6 @@
+// Required for using bcryptjs in Next.js
+export const runtime = "nodejs";
+
 import NextAuth from "next-auth"
 import { compare, hash } from "bcryptjs"
 import Credentials from "next-auth/providers/credentials"
