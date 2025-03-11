@@ -1,8 +1,3 @@
-"use client";
-
-// Required for using auth in Next.js
-export const runtime = "nodejs";
-
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";

@@ -17,7 +17,10 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   experimental: {
-    serverActions: true,
+    serverActions: {
+      allowedOrigins: ['localhost:3000', 'vintage-store.vercel.app'],
+    },
+    instrumentationHook: true,
   },
   // Adding runtime configuration for modules that need Node.js runtime
   webpack: (config) => {
@@ -33,4 +36,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig
