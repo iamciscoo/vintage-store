@@ -16,12 +16,8 @@ const nextConfig = {
     // We'll handle TypeScript errors ourselves. This is temporary until Next.js 15 types are fixed.
     ignoreBuildErrors: true,
   },
-  // Configure external packages that need Node.js runtime
   experimental: {
-    serverActions: {
-      bodySizeLimit: '2mb',
-    },
-    serverComponentsExternalPackages: ["bcryptjs", "@prisma/client"],
+    serverActions: true,
   },
   // Adding runtime configuration for modules that need Node.js runtime
   webpack: (config) => {
