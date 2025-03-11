@@ -3,11 +3,14 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { AuthProvider } from "@/components/providers/auth-provider";
-import { metadata } from "./metadata";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export { metadata };
+export const metadata = {
+  title: "Vintage Store",
+  description: "Your one-stop shop for vintage clothing and accessories",
+  keywords: ["vintage", "clothing", "fashion", "accessories", "online store"],
+};
 
 export default function RootLayout({
   children,

@@ -17,10 +17,8 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   experimental: {
-    serverActions: {
-      allowedOrigins: ['localhost:3000', 'vintage-store.vercel.app'],
-    },
-    instrumentationHook: true,
+    serverActions: true,
+    serverComponentsExternalPackages: ['bcryptjs', '@prisma/client'],
   },
   // Adding runtime configuration for modules that need Node.js runtime
   webpack: (config) => {
