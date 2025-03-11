@@ -1,8 +1,11 @@
+import { Suspense } from "react"
 import { prisma } from "@/lib/prisma"
 import { ClientHomeWrapper } from "@/components/home/client-home-wrapper"
 
+// Force dynamic rendering and disable cache
 export const dynamic = "force-dynamic"
 export const fetchCache = "force-no-store"
+export const revalidate = 0
 
 export default async function Home() {
   // Fetch featured products
@@ -63,13 +66,13 @@ export default async function Home() {
   ]
 
   return (
-    <main>
+    <Suspense fallback={<div>Loading...</div>}>
       <ClientHomeWrapper
-        featuredProducts={featuredProducts}
-        latestProducts={latestProducts}
-        categories={categories}
+        featuredProducts={JSON.parse(JSON.stringify(featuredProducts))}
+        latestProducts={JSON.parse(JSON.stringify(latestProducts))}
+        categories={JSON.parse(JSON.stringify(categories))}
         banners={banners}
       />
-    </main>
+    </Suspense>
   )
 }

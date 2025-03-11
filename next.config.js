@@ -20,9 +20,8 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
+    nodeMiddleware: true,
   },
-  // Specify which packages should be treated as external on the server
-  serverComponentsExternalPackages: ['bcryptjs', '@prisma/client'],
   // Configure webpack for Node.js compatibility
   webpack: (config, { isServer }) => {
     if (!isServer) {
@@ -38,6 +37,8 @@ const nextConfig = {
     }
     return config
   },
+  // Specify which packages should be treated as external on the server
+  serverComponentsExternalPackages: ['bcryptjs', '@prisma/client'],
 }
 
 module.exports = nextConfig
