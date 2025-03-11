@@ -1,5 +1,9 @@
 import { prisma } from "@/lib/prisma"
-import { ClientHomeWrapper } from "@/components/home/client-home-wrapper"
+import { HeroSection } from "@/components/home/hero-section"
+import { BannerCarousel } from "@/components/home/banner-carousel"
+import { CategoryNavigation } from "@/components/home/category-navigation"
+import { LatestProducts } from "@/components/home/latest-products"
+import { ProductHighlights } from "@/components/home/product-highlights"
 
 export default async function Home() {
   // Fetch featured products
@@ -60,11 +64,31 @@ export default async function Home() {
   ]
 
   return (
-    <ClientHomeWrapper 
-      featuredProducts={featuredProducts}
-      latestProducts={latestProducts}
-      categories={categories}
-      banners={banners}
-    />
+    <main>
+      {/* Hero Section */}
+      <section className="container py-6">
+        <HeroSection featuredProducts={featuredProducts} />
+      </section>
+
+      {/* Category Navigation */}
+      <CategoryNavigation categories={categories} />
+
+      {/* Banner Carousel */}
+      <section className="py-12 bg-muted">
+        <div className="container">
+          <BannerCarousel banners={banners} />
+        </div>
+      </section>
+
+      {/* Latest Products */}
+      <LatestProducts products={latestProducts} />
+
+      {/* Product Highlights */}
+      <ProductHighlights
+        title="Staff Picks"
+        subtitle="Our team's favorite items this season"
+        products={featuredProducts}
+      />
+    </main>
   )
 }
